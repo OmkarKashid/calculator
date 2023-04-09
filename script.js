@@ -24,7 +24,25 @@ function operate(num1, num2, operator){
             return "Operator not recognized!";
     }
 }
+function display(btn){
+    displayValue= displayValue.concat(` ${btn.textContent}`);
+    disp.textContent = displayValue;
+    console.log(displayValue);
+}
+function iterateEveryButton(){
+    const btns = document.querySelectorAll(".btn");
+    const btnsArray = [...btns];
+    btnsArray.forEach(btn => {
+        addButtonEvent(btn);
+    });
+}
+function addButtonEvent(btn){
+    btn.addEventListener("click", () => display(btn))
+}
+const disp = document.querySelector("#display");
+let displayValue= "";
 let num1 = 0;
 let num2 = 0;
 let operator = "";
+iterateEveryButton();
 
