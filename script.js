@@ -93,6 +93,15 @@ function processEqual(){
         refreshDisplay();
     }
 }
+function deleteDisplay(){
+    if(displayText.slice(-1) == " "){
+        displayText = displayText.slice(0, displayText.length-3)
+    }
+    else{
+        displayText = displayText.slice(0, displayText.length-1);
+    }
+    refreshDisplay();
+}
 function clearDisplay(){
     displayText = "";
     isOperatorPresent = false;
@@ -118,7 +127,8 @@ function refreshDisplay(){
 const disp = document.querySelector("#display");
 const eql = document.querySelector("#btn_eql");
 const clr = document.querySelector("#btn_clr");
-const dec = document.querySelector("#btn_dec");
+const del = document.querySelector("#btn_del");
+
 let isOperatorPresent = false;
 let isNum1DecimalPresent = false;
 let isNum2DecimalPresent = false;
@@ -128,6 +138,7 @@ const operators = ["+", "-", "*", "/"];
 iterateEveryButton();
 eql.addEventListener("click", () => processEqual());
 clr.addEventListener("click", () => clearDisplay());
+del.addEventListener("click", () => deleteDisplay());
 clearDisplay();
 
 
