@@ -5,7 +5,7 @@ body{
     font-family: 'Orbitron', sans-serif;
     font-size: 25px;
     font-weight: 600;
-    background-image: url(./image/background_svg.png);
+    background-image: url(./images/background_svg.png);
 }
 #container{
     text-align: center;
