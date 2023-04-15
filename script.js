@@ -78,6 +78,7 @@ function checkDecimal(){
 function processEqual(){
     const equationArray = displayText.split(" ");
     if(equationArray.length > 2){
+        refreshDisplayExpression();
         displayText = String(operate(equationArray[0], equationArray[1], equationArray[2]));
         isOperatorPresent = false;
         isNum1DecimalPresent = false;
@@ -108,11 +109,11 @@ function clearDisplay(){
     isNum1DecimalPresent = false;
     isNum2DecimalPresent = false;
     refreshDisplay();
+    refreshDisplayExpression();
 }
 
 function refreshDisplay(){
     checkDecimal();
-
     if(displayText === "NaN") {
         disp.textContent = "Gotcha! Infinite~";
         displayText = "";
@@ -123,8 +124,12 @@ function refreshDisplay(){
     }
     disp.textContent = displayText;
 }
+function refreshDisplayExpression(){
+    disp_exp.textContent = displayText; 
+}
 
-const disp = document.querySelector("#display");
+const disp = document.querySelector("#display_ans");
+const disp_exp = document.querySelector("#display_exp");
 const eql = document.querySelector("#btn_eql");
 const clr = document.querySelector("#btn_clr");
 const del = document.querySelector("#btn_del");
@@ -135,6 +140,7 @@ let isNum2DecimalPresent = false;
 let operator = "";
 let displayText = "";
 const operators = ["+", "-", "*", "/"];
+
 iterateEveryButton();
 eql.addEventListener("click", () => processEqual());
 clr.addEventListener("click", () => clearDisplay());
