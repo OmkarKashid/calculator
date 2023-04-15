@@ -46,7 +46,6 @@ function display(btn){
         if(btn.textContent == "."){
             checkDecimal();
             if(!isNum1DecimalPresent && !isOperatorPresent){
-                console.log(btn.textContent);
                 displayText = displayText.concat(`${btn.textContent}`);
             }
             if(!isNum2DecimalPresent && isOperatorPresent){
@@ -83,6 +82,14 @@ function processEqual(){
         isOperatorPresent = false;
         isNum1DecimalPresent = false;
         isNum2DecimalPresent = false;
+        
+        checkDecimal();
+
+        if(!isOperatorPresent && isNum1DecimalPresent){
+            let NumberValue = (+displayText);
+            NumberValue = Math.round((NumberValue + Number.EPSILON) * 1000) / 1000;
+            displayText = String(NumberValue);
+        }
         refreshDisplay();
     }
 }
@@ -96,11 +103,7 @@ function clearDisplay(){
 
 function refreshDisplay(){
     checkDecimal();
-    if(!isOperatorPresent){
-        let NumberValue = (+displayText);
-        NumberValue = Math.round((NumberValue + Number.EPSILON) * 1000) / 1000;
-        displayText = String(NumberValue);
-    } 
+
     if(displayText === "NaN") {
         disp.textContent = "Gotcha! Infinite~";
         displayText = "";
