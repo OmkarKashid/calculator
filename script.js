@@ -56,6 +56,9 @@ function display(btn){
             }
         }
         else{
+            if(displayText == "0"){
+                displayText = "";
+            }
             displayText = displayText.concat(`${btn.textContent}`);//not operator and decimal means it's number button
         }
 
@@ -111,7 +114,7 @@ function deleteDisplay(){
 }
 /*Function for reseting display and indicators */
 function clearDisplay(){
-    displayText = "";
+    displayText = "0";
     isOperatorPresent = false;
     isNum1DecimalPresent = false;
     isNum2DecimalPresent = false;
